@@ -18,7 +18,7 @@
             padding: 0;
             direction: rtl;
             text-align: right;
-                        font-family: 'Cairo', Arial, sans-serif;
+            font-family: 'Cairo', Arial, sans-serif;
 
         }
 
@@ -31,7 +31,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             direction: rtl;
             text-align: right;
-                        font-family: 'Cairo', Arial, sans-serif;
+            font-family: 'Cairo', Arial, sans-serif;
         }
 
         .header {
@@ -40,7 +40,7 @@
             padding: 20px;
             text-align: center;
             direction: rtl;
-                        font-family: 'Cairo', Arial, sans-serif;
+            font-family: 'Cairo', Arial, sans-serif;
 
         }
 
@@ -49,7 +49,7 @@
             margin: 0 auto 15px;
             max-width: 150px;
             height: auto;
-                        font-family: 'Cairo', Arial, sans-serif;
+            font-family: 'Cairo', Arial, sans-serif;
 
         }
 
@@ -57,7 +57,7 @@
             margin: 0;
             font-size: 24px;
             font-weight: 700;
-                        font-family: 'Cairo', Arial, sans-serif;
+            font-family: 'Cairo', Arial, sans-serif;
 
         }
 
@@ -65,7 +65,7 @@
             padding: 30px;
             direction: rtl;
             text-align: right;
-                        font-family: 'Cairo', Arial, sans-serif;
+            font-family: 'Cairo', Arial, sans-serif;
 
         }
 
@@ -137,7 +137,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="{{ $message->embed(public_path('assets\images\logo\logo-becj-bicolor.png')) }}" alt="Logo Tiddaf"
+            <img src="{{ 'tiddaf.arbitre.ma/public/assets/images/logo/logo-becj-bicolor.png' }}" alt="Logo Tiddaf"
                 style="max-width: 150px; margin-bottom: 15px;">
             <h1>رسالة جديدة من موقع تضاف للتنمية</h1>
         </div>

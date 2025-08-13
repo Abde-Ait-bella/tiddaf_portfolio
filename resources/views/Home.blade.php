@@ -16,7 +16,6 @@
     <script src="{{ asset('assets/js/feather.min.js') }}"></script>
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -2098,7 +2097,7 @@
                 var tel = document.querySelector('input[name="tel"]').value;
                 var subject = document.querySelector('select[name="subject"]').options[document.querySelector('select[name="subject"]').selectedIndex].text;
                 var message = document.querySelector('input[name="message"]').value;
-                var whatsappNumber = '+212681783861'; // Remplace par le numéro WhatsApp de l'association
+                var whatsappNumber = '+212635648611'; // Remplace par le numéro WhatsApp de l'association
                 var text = `الاسم الكامل: ${nom}%0Aالبريد الإلكتروني: ${email}%0Aالهاتف: ${tel}%0Aنوع المساهمة: ${subject}%0Aالرسالة: ${message}`;
                 var url = `https://wa.me/${whatsappNumber}?text=${text}`;
                 window.open(url, '_blank');
