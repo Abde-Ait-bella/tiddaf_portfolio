@@ -31,6 +31,181 @@
 
     <!-- Responsive Styles -->
     <style>
+        /* Preloader Styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            -webkit-transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            -moz-transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            overflow: hidden;
+            will-change: opacity, visibility;
+            margin-top: 0; /* Assurez-vous qu'il n'y a pas de marge en haut */
+            padding-top: 0; /* Pas de padding en haut */
+        }
+        
+        #preloader.hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            display: none !important;
+        }
+        
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .loader-spinner {
+            display: flex;
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        
+        .spinner-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
+            border-top-color: #1340dd;
+            border-radius: 50%;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+        
+        .spinner-circle:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+        
+        .spinner-circle:nth-child(2) {
+            animation-delay: -0.3s;
+            width: 75%;
+            height: 75%;
+            top: 12.5%;
+            left: 12.5%;
+            border-top-color: #2c5aff;
+        }
+        
+        .spinner-circle:nth-child(3) {
+            animation-delay: -0.15s;
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
+            border-top-color: #6384ff;
+        }
+        
+        .loader-logo {
+            width: 80px;
+            height: auto;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: pulse 2s infinite, fadeInUp 1s forwards 0.5s;
+        }
+        
+        .loader-text {
+            font-size: 18px;
+            color: #1340dd;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeInOut 1.5s infinite, fadeInUp 1s forwards 0.8s;
+        }
+        
+        /* Responsive preloader */
+        @media (max-width: 767px) {
+            .loader-spinner {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .spinner-circle {
+                border-width: 3px;
+            }
+            
+            .loader-logo {
+                width: 60px;
+            }
+            
+            .loader-text {
+                font-size: 16px;
+            }
+            
+            #preloader {
+                padding-top: 60px; /* Ajout d'un padding en haut pour éviter le chevauchement avec le header sur mobile */
+            }
+        }
+        
+        @media (max-width: 576px) {
+            #preloader {
+                padding-top: 80px; /* Plus de padding pour les très petits écrans */
+            }
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Content animation after preloader */
+        .content_all_warpper {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .content_all_warpper.page-loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Style pour le contenu principal */
+        #content {
+            transition: opacity 0.8s ease-out;
+        }
+        
         /* General responsive styles */
         .mobile-stack {
             display: flex;
@@ -510,9 +685,131 @@
     <!-- styling for demo purpose
     <link rel='stylesheet' href='assets/css/color-3.css' type='text/css' media='all' />
    styling for demo purpose -->
+   
+    <script>
+        // Preloader script to ensure it shows before site loads
+        window.onload = function() {
+            // Cache les éléments jusqu'à ce que tout soit chargé
+            document.body.style.overflow = 'hidden';
+            console.log('window.onload triggered');
+        };
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log('DOMContentLoaded triggered');
+            
+            // Référencer le préchargeur
+            const preloader = document.getElementById('preloader');
+            const contentWrapper = document.querySelector('.content_all_warpper');
+            const content = document.getElementById('content');
+            
+            // Force le préchargeur à être visible dès le début
+            if (preloader) {
+                console.log('Setting preloader visible');
+                preloader.style.display = 'flex';
+                preloader.style.opacity = '1';
+                preloader.style.visibility = 'visible';
+                document.body.style.overflow = 'hidden'; // Empêche le défilement pendant le chargement
+            }
+            
+            // Cacher initialement le contenu
+            if (content) {
+                content.style.opacity = '0';
+            }
+            
+            // Ensure minimum display time for preloader (2 seconds)
+            const minDisplayTime = 2000;
+            const startTime = Date.now();
+            
+            // Function to hide preloader with smooth transition
+            function hidePreloader() {
+                const elapsedTime = Date.now() - startTime;
+                const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+                
+                console.log('Hiding preloader after', remainingTime, 'ms');
+                
+                // Wait for minimum display time
+                setTimeout(function() {
+                    if (preloader) {
+                        console.log('Transitioning preloader out...');
+                        preloader.style.opacity = '0';
+                        
+                        // After transition is complete, hide preloader
+                        setTimeout(function() {
+                            console.log('Hiding preloader completely');
+                            preloader.style.visibility = 'hidden';
+                            preloader.style.display = 'none'; // Assure que le préchargeur est complètement retiré
+                            preloader.classList.add('hidden'); // Ajoute la classe hidden
+                            document.body.style.overflow = ''; // Réactive le défilement
+                            
+                            // Show and animate content
+                            if (content) {
+                                content.style.opacity = '1';
+                                content.style.transition = 'opacity 0.8s ease-out';
+                            }
+                            
+                            if (contentWrapper) {
+                                contentWrapper.classList.add('page-loaded');
+                            }
+                        }, 300);
+                    }
+                }, remainingTime);
+            }
+            
+            // Add fallback in case load event doesn't fire
+            setTimeout(function() {
+                console.log('Fallback timeout triggered after 4s');
+                if (preloader && preloader.style.opacity !== '0') {
+                    hidePreloader();
+                }
+            }, 2000);
+            
+            // Call on window load event
+            window.addEventListener('load', function() {
+                console.log('Window load event triggered');
+                hidePreloader();
+            });
+        });
+    </script>
 </head>
 
 <body class="theme-vankine scrollbarcolor s_color_one">
+    <!-- Preloader - mis à l'extérieur pour une meilleure visibilité -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="loader-spinner">
+                <div class="spinner-circle"></div>
+                <div class="spinner-circle"></div>
+                <div class="spinner-circle"></div>
+            </div>
+            <img src="{{ asset('assets/images/logo/headLogo.png') }}" alt="تضاف" class="loader-logo">
+            <div class="loader-text">جاري التحميل...</div>
+        </div>
+    </div>
+    <!-- Script d'initialisation immédiate du préchargeur -->
+    <script>
+        // Force le préchargeur à être visible immédiatement
+        document.addEventListener('DOMContentLoaded', function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.display = 'flex';
+                preloader.style.opacity = '1';
+                preloader.style.visibility = 'visible';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+        // Assure que le préchargeur est visible dès le début
+        window.onbeforeunload = function() {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.style.display = 'flex';
+                preloader.style.opacity = '1';
+                preloader.style.visibility = 'visible';
+            }
+            document.body.style.overflow = 'hidden';
+        };
+    </script>
+    <!-- End Preloader -->
+    
     <div class="line_box_outer">
         <div class="lined"></div>
         <div class="lined two"></div>
@@ -722,7 +1019,7 @@
         <!----==============sticky header end==============--->
         <!----==============content_all_warpper==============--->
         <div id="wrapper_full" class="content_all_warpper">
-            <!--content start-->
+            <!-- Contenu principal -->
             <div id="content" class="site-content">
                 <!---slider-->
                 <div class="slider style_five">
@@ -1290,12 +1587,6 @@
                                                 <div class="alert alert-success mt-3"
                                                     style="color: white; background-color: #28a745; padding: 10px; border-radius: 5px; margin-top: 15px;">
                                                     {{ session('success') }}
-                                                </div>
-                                            @endif
-                                            @if(session('error'))
-                                                <div class="alert alert-danger mt-3"
-                                                    style="color: white; background-color: #dc3545; padding: 10px; border-radius: 5px; margin-top: 15px;">
-                                                    {{ session('error') }}
                                                 </div>
                                             @endif
                                         </form>
@@ -1979,6 +2270,18 @@
 
             // Initialize when DOM is loaded
             document.addEventListener('DOMContentLoaded', function () {
+                // Préchargement des images du slider pour un affichage plus fluide
+                const sliderImages = [
+                    'assets/images/testimonial/بيئة.jpg',
+                    'assets/images/testimonial/تقافة.jpg',
+                    'assets/images/testimonial/رياضة.jpg'
+                ];
+                
+                sliderImages.forEach(function(src) {
+                    const img = new Image();
+                    img.src = src;
+                });
+                
                 // Force hide all slides first
                 let slides = document.getElementsByClassName("testimonial_box");
                 for (let i = 0; i < slides.length; i++) {
@@ -1990,7 +2293,7 @@
                 setTimeout(function () {
                     showTestimonialSlide(testimonialSlideIndex);
                     startTestimonialAutoSlide();
-                }, 100);
+                }, 300);
             });
         </script>
 
@@ -2031,6 +2334,157 @@
                 var text = `رسالة من موقع جمعية تضاف%0A%0Aالاسم الكامل: ${nom}%0Aالبريد الإلكتروني: ${email}%0Aالهاتف: ${tel}%0Aنوع المساهمة: ${subject}%0Aالرسالة: ${message}`;
                 var url = `https://wa.me/${whatsappNumber}?text=${text}`;
                 window.open(url, '_blank');
+            });
+        </script>
+        
+        <!-- Preloader Script -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Show preloader
+                const preloader = document.getElementById('preloader');
+                const loaderLogo = document.querySelector('.loader-logo');
+                const loaderText = document.querySelector('.loader-text');
+                const contentWrapper = document.querySelector('.content_all_warpper');
+                
+                // Force preloader to be visible and block scrolling
+                if (preloader) {
+                    preloader.style.display = 'flex';
+                    preloader.style.opacity = '1';
+                    preloader.style.visibility = 'visible';
+                    document.body.style.overflow = 'hidden';
+                }
+                
+                // Hide content until fully loaded
+                if (contentWrapper) {
+                    contentWrapper.style.opacity = '0';
+                }
+                
+                // Start loading animation
+                setTimeout(function() {
+                    if (loaderLogo) loaderLogo.style.visibility = 'visible';
+                    if (loaderText) loaderText.style.visibility = 'visible';
+                }, 300);
+                
+                // Préchargement des images principales
+                const imagesToPreload = [
+                    'assets/images/testimonial/بيئة.jpg',
+                    'assets/images/testimonial/تقافة.jpg',
+                    'assets/images/testimonial/رياضة.jpg',
+                    'assets/images/logo/headLogo.png',
+                    'assets/images/blog/kitab.jpg',
+                    'assets/images/blog/ahlelquran.jpg',
+                    'assets/images/blog/sport.jpg'
+                ];
+                
+                function preloadImages(sources, callback) {
+                    let loadedCounter = 0;
+                    const toBeLoadedNumber = sources.length;
+
+                    sources.forEach(function(src) {
+                        const img = new Image();
+                        img.onload = img.onerror = function() {
+                            loadedCounter++;
+                            if (loadedCounter === toBeLoadedNumber) {
+                                callback();
+                            }
+                        };
+                        img.src = src;
+                    });
+                }
+                
+                // Calculate load time
+                const startTime = new Date().getTime();
+                
+                // Function to hide preloader with minimum display time
+                function hidePreloader() {
+                    const currentTime = new Date().getTime();
+                    const loadTime = currentTime - startTime;
+                    
+                    // Ensure the preloader is visible for at least 2 seconds for a better UX
+                    const minDisplayTime = 2000;
+                    const remainingTime = Math.max(0, minDisplayTime - loadTime);
+                    
+                    setTimeout(function() {
+                        // Add fade out effect
+                        if (preloader) {
+                            preloader.style.opacity = '0';
+                            
+                            // Remove preloader from visibility after transition
+                            setTimeout(function() {
+                                preloader.style.visibility = 'hidden';
+                                preloader.style.display = 'none';
+                                
+                                // Animate content entrance
+                                if (contentWrapper) {
+                                    contentWrapper.classList.add('page-loaded');
+                                    contentWrapper.style.opacity = '1';
+                                }
+                                
+                                // Enable scrolling on body
+                                document.body.style.overflow = '';
+                            }, 300);
+                        }
+                    }, remainingTime);
+                }
+                
+                // Hide preloader when page is fully loaded and images are preloaded
+                window.addEventListener('load', function() {
+                    // Précharger les images puis masquer le préchargeur
+                    preloadImages(imagesToPreload, function() {
+                        console.log('Images préchargées avec succès');
+                        hidePreloader();
+                    });
+                });
+                
+                // Fallback: Hide preloader after 4 seconds even if page isn't fully loaded
+                setTimeout(function() {
+                    if (preloader && preloader.style.opacity !== '0') {
+                        console.log('Fallback timeout triggered');
+                        hidePreloader();
+                    }
+                }, 4000);
+            });
+        </script>
+        
+        <!-- Script de secours pour fermer le préchargeur -->
+        <script>
+            // Assurer que le préchargeur disparaît après un temps défini
+            window.addEventListener('DOMContentLoaded', function() {
+                // Précharger les images principales
+                const criticalImages = [
+                    'assets/images/testimonial/بيئة.jpg',
+                    'assets/images/testimonial/تقافة.jpg',
+                    'assets/images/testimonial/رياضة.jpg'
+                ];
+                
+                function preloadBackupImages(sources) {
+                    sources.forEach(function(src) {
+                        const img = new Image();
+                        img.src = src;
+                    });
+                }
+                
+                // Précharger les images critiques
+                preloadBackupImages(criticalImages);
+                
+                // Forcer la fermeture du préchargeur après 5 secondes quoi qu'il arrive
+                setTimeout(function() {
+                    const preloader = document.getElementById('preloader');
+                    if (preloader) {
+                        console.log('Force-closing preloader after 5s');
+                        preloader.style.opacity = '0';
+                        preloader.style.visibility = 'hidden';
+                        preloader.style.display = 'none';
+                        document.body.style.overflow = '';
+                        
+                        // Animation du contenu
+                        const contentWrapper = document.querySelector('.content_all_warpper');
+                        if (contentWrapper) {
+                            contentWrapper.classList.add('page-loaded');
+                            contentWrapper.style.opacity = '1';
+                        }
+                    }
+                }, 5000);
             });
         </script>
         <!----=================Script================---->
