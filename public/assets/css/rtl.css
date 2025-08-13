@@ -1,0 +1,247 @@
+/* RTL Support for Arabic */
+html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Navigation adjustments for RTL */
+html[dir="rtl"] .navbar_nav {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .navbar_nav li {
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+/* Contact header adjustments */
+html[dir="rtl"] .contact_header_one {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .contact_header_one .icon_s {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+/* Button adjustments */
+html[dir="rtl"] .theme_btn svg {
+    transform: scaleX(-1);
+}
+
+/* Form adjustments */
+html[dir="rtl"] .contact_form_shortcode input,
+html[dir="rtl"] .contact_form_shortcode select {
+    text-align: right;
+    direction: rtl;
+}
+
+/* Service box adjustments */
+html[dir="rtl"] .service_box .d-flex {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .service_box .icon {
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+/* List adjustments */
+html[dir="rtl"] .list_box li .d-flex {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .list_box li .icon {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+/* Testimonial adjustments */
+html[dir="rtl"] .testimonial_box .auth {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .testimonial_box .image_box {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+/* Footer adjustments */
+html[dir="rtl"] .call_to_action .d-flex {
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .call_to_action .icon_s {
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+/* Slider adjustments - PRESERVE ORIGINAL FUNCTIONALITY */
+html[dir="rtl"] .slider.style_five {
+    direction: ltr !important; /* Keep entire slider in LTR mode */
+}
+
+html[dir="rtl"] .slider.style_five * {
+    direction: ltr !important; /* Preserve all slider elements */
+}
+
+/* Only the text content should be RTL */
+html[dir="rtl"] .slider.style_five .slider_content h1,
+html[dir="rtl"] .slider.style_five .slider_content h6 {
+    direction: rtl;
+    text-align: center;
+}
+
+/* Tab slider - preserve original behavior */
+html[dir="rtl"] .tab_postion_absolute {
+    direction: ltr !important;
+}
+
+html[dir="rtl"] .tab_slick {
+    direction: ltr !important;
+}
+
+html[dir="rtl"] .tab_slick .title {
+    direction: rtl;
+    text-align: center;
+}
+
+/* About section adjustments */
+html[dir="rtl"] .fun_facts {
+    text-align: right;
+}
+
+/* Arabic font support */
+html[dir="rtl"] * {
+    font-family: 'Cairo', 'Arial', 'Tahoma', sans-serif;
+}
+
+/* Ensure images are not flipped in RTL - BUT PRESERVE SLIDER */
+html[dir="rtl"] img:not(.slider.style_five img),
+html[dir="rtl"] .image-layer:not(.slider.style_five .image-layer),
+html[dir="rtl"] .image_box img:not(.slider.style_five .image_box img) {
+    direction: ltr !important;
+    transform: none !important;
+}
+
+/* Fix for icons in RTL */
+html[dir="rtl"] .fi-rr-arrow-small-right::before {
+    content: "\f112"; /* left arrow */
+}
+
+html[dir="rtl"] .fi-rr-arrow-small-up {
+    transform: scaleX(-1);
+}
+
+/* Slider animations - keep them working in RTL */
+html[dir="rtl"] .animate_left {
+    animation-direction: normal;
+}
+
+html[dir="rtl"] .animate_up {
+    animation-direction: normal;
+}
+
+/* Slick slider RTL support - EXCEPT for style_five slider */
+html[dir="rtl"] .slick-slider:not(.slider.style_five .slick-slider) {
+    direction: rtl;
+}
+
+html[dir="rtl"] .slick-list:not(.slider.style_five .slick-list) {
+    direction: rtl;
+}
+
+html[dir="rtl"] .slick-track:not(.slider.style_five .slick-track) {
+    direction: rtl;
+}
+
+/* Padding and margin adjustments for RTL */
+html[dir="rtl"] .pd_right_60 {
+    padding-right: 0;
+    padding-left: 60px;
+}
+
+html[dir="rtl"] .pd_left_30 {
+    padding-left: 0;
+    padding-right: 30px;
+}
+
+html[dir="rtl"] .pd_left_20 {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+html[dir="rtl"] .mr_left_minus_40 {
+    margin-left: 0;
+    margin-right: -40px;
+}
+
+html[dir="rtl"] .mr_left_minus_100 {
+    margin-left: 0;
+    margin-right: -100px;
+}
+
+html[dir="rtl"] .mr_right_40 {
+    margin-right: 0;
+    margin-left: 40px;
+}
+
+/* Remove problematic slider fixes */
+/* Commented out to preserve original slider functionality */
+/*
+html[dir="rtl"] .tab_content_slick {
+    direction: ltr;
+}
+
+html[dir="rtl"] .tab_content_slick .slide-item-content {
+    direction: rtl;
+}
+
+html[dir="rtl"] .slide-item-content .image-layer {
+    direction: ltr !important;
+    background-position: center center !important;
+    background-size: cover !important;
+}
+*/
+
+/* حل مشكل عدم ظهور testimonial cards */
+.testimonial_carousel {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+.testimonial_carousel .theme_carousel {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+.testimonial_carousel .owl-carousel {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.testimonial_box {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    margin-bottom: 30px;
+}
+
+/* إجبار عرض الـ cards حتى لو فشل الـ carousel */
+html[dir="rtl"] .testimonial_carousel .owl-carousel .owl-item {
+    display: block !important;
+    width: 100% !important;
+    float: none !important;
+}
+
+/* عرض جميع الـ cards عمودياً كـ fallback */
+@media (max-width: 768px) {
+    .testimonial_carousel .owl-carousel .owl-item {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+}
