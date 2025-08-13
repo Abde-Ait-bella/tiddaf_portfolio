@@ -29,122 +29,370 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=DM+Sans%3A400%2C400i%2C500%2C500i%2C700%2C700i&amp;subset=latin%2Clatin-ext"
         type="text/css" media="all" />
-    
+
     <!-- Responsive Styles -->
     <style>
+        /* General responsive styles */
+        .mobile-stack {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contact-info-wrapper {
+            margin-top: 10px;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        /* Hamburger menu styles - modern version */
+        .navbar_togglers.hamburger_menu {
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+            padding: 10px;
+            z-index: 1100;
+            display: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
         @media (max-width: 991px) {
+            .navbar_togglers.hamburger_menu {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .navbar_togglers.hamburger_menu .line {
+            width: 25px;
+            height: 3px;
+            background-color: #1340dd;
+            margin: 3px 0;
+            border-radius: 3px;
+            transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+            display: block;
+        }
+
+        /* Mobile menu open animation */
+        .navbar_togglers.hamburger_menu.active {
+            background-color: #1340dd;
+        }
+        
+        .navbar_togglers.hamburger_menu.active .line {
+            background-color: white;
+        }
+        
+        .navbar_togglers.hamburger_menu.active .line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+            width: 22px;
+        }
+
+        .navbar_togglers.hamburger_menu.active .line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .navbar_togglers.hamburger_menu.active .line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+            width: 22px;
+        }
+
+        .mobile-menu-visible {
+            display: block !important;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile menu close button */
+        .mobile-menu-close {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        @media (max-width: 991px) {
+            .mobile-menu-close {
+                display: block;
+            }
+        }
+
+        .mobile-menu-close span {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #1340dd;
+            transform-origin: center;
+        }
+
+        .mobile-menu-close span:first-child {
+            transform: rotate(45deg);
+        }
+
+        .mobile-menu-close span:last-child {
+            transform: rotate(-45deg);
+        }
+
+        /* Nav item hover effect */
+        .navbar_nav .nav-item {
+            position: relative;
+            padding: 0 5px;
+        }
+
+        .navbar_nav .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #1340dd;
+            transition: width 0.3s ease;
+        }
+
+        .navbar_nav .nav-item:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 991px) {
+            .navbar_nav .nav-item::after {
+                display: none;
+            }
+
+            .nav_link {
+                position: relative;
+                transition: all 0.3s ease;
+            }
+
+            .nav_link::after {
+                content: '';
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background-color: #1340dd;
+                transform: translateX(-50%);
+                transition: width 0.3s ease;
+            }
+
+            .nav_link:hover::after {
+                width: 30%;
+            }
+        }
+
+        @media (max-width: 991px) {
+
             /* Contact form adjustments */
             .contact_form_box_all {
                 margin-right: 0 !important;
             }
+
             .mr_left_minus_100 {
                 margin-left: 0 !important;
             }
 
+            /* Fix spacing for better mobile display */
+            .mr_left_minus_40 {
+                margin-left: 0 !important;
+                margin-top: 30px;
+            }
+
+            /* Add padding for better content spacing */
+            .pd_left_30,
+            .pd_left_20 {
+                padding: 0 15px !important;
+                margin-top: 30px;
+            }
+
+            /* Center content on mobile */
+            .text-right {
+                text-align: center !important;
+            }
+
+            /* Text alignment for mobile */
+            .text-center-mobile {
+                text-align: center !important;
+            }
+
+            /* Icon and content order for mobile */
+            .mobile-order-1 {
+                order: 1;
+            }
+
+            .mobile-order-2 {
+                order: 2;
+                margin-right: 10px;
+            }
+
+            /* Header structure adjustments */
+            .contact_header_one {
+                justify-content: flex-end !important;
+                margin-bottom: 15px;
+            }
+
             /* Navbar adjustments */
-            .top_bar .row {
-                flex-direction: column;
-                gap: 15px !important;
-            }
-            .top_bar .contact_header_one {
-                justify-content: center;
-            }
-            .top_bar .col-lg-auto {
-                width: 100%;
-                text-align: center;
-            }
             .column_menu {
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 0;
                 left: 0;
                 right: 0;
                 width: 100%;
-                background-color: white;
-                z-index: 1000;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-                padding: 15px;
+                height: 100vh;
+                background-color: rgba(255, 255, 255, 0.98);
+                z-index: 999;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 80px 15px 15px;
                 display: none;
+                overflow-y: auto;
+                transition: all 0.3s ease;
             }
+
             .column_menu .navbar_nav {
                 flex-direction: column;
                 align-items: center;
+                padding: 0;
+                margin-top: 20px;
             }
+
             .column_menu .navbar_nav li {
-                margin: 10px 0;
+                margin: 12px 0;
                 width: 100%;
                 text-align: center;
             }
-            .navbar_togglers.hamburger_menu {
-                display: inline-block;
-                cursor: pointer;
+
+            .nav_link {
+                display: block;
+                padding: 15px;
+                font-size: 20px;
+                font-weight: 600;
+                transition: all 0.3s ease;
             }
-            .navbar_togglers.hamburger_menu.active .line:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
+
+            .nav_link:hover {
+                background-color: rgba(19, 64, 221, 0.1);
+                border-radius: 5px;
+                transform: translateY(-3px);
             }
-            .navbar_togglers.hamburger_menu.active .line:nth-child(2) {
-                opacity: 0;
+
+            /* Contact button adjustments */
+            .theme_btn_all {
+                margin-right: 15px;
             }
-            .navbar_togglers.hamburger_menu.active .line:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-            
+
             /* Footer adjustments */
             footer .call_to_action {
                 flex-direction: column;
                 text-align: center;
             }
+
             footer .call_to_action .section_title {
                 margin-bottom: 20px;
             }
+
             footer .call_to_action .theme_btn_all {
                 margin: 15px 0;
             }
-            footer .contact_header_one {
-                justify-content: center;
-                margin-top: 20px;
-            }
+        }
+
+        footer .contact_header_one {
+            justify-content: center;
+            margin-top: 20px;
         }
 
         @media (max-width: 767px) {
+
             /* Header and footer text adjustments */
             .title_whole h2.title {
                 font-size: 24px;
                 line-height: 1.4;
             }
+
             .section_title .sm_title {
                 font-size: 16px;
             }
-            
+
             /* Contact form and images */
             .image_box_only img {
                 max-width: 100%;
                 height: auto;
             }
-            
+
             /* Fix spacing in testimonials section */
             #testimonials .pd_right_60 {
                 padding-right: 0 !important;
             }
-            
+
             /* Fix spacing in about section */
             #about .pd_right_60 {
                 padding-right: 0 !important;
+            }
+
+            /* Cancel all padding on mobile */
+            .pd_right_60,
+            .pd_left_20,
+            .pd_left_30 {
+                padding-right: 0 !important;
+                padding-left: 0 !important;
+            }
+
+            /* Responsive content adjustments */
+            .responsive-content {
+                padding: 0 15px !important;
+                margin-bottom: 30px;
+            }
+
+            @media (min-width: 992px) {
+                .responsive-content {
+                    padding-right: 60px !important;
+                    margin-bottom: 0;
+                }
             }
 
             /* Footer social icons */
             footer .title_20.d-flex {
                 justify-content: center;
             }
+
             footer .contact_header_one {
                 width: 100%;
                 margin-top: 20px;
             }
-            
+
             /* Fix mobile spacing */
-            .pd_right_60, .pd_left_20, .pd_left_30 {
+            .pd_right_60,
+            .pd_left_20,
+            .pd_left_30 {
                 padding-right: 15px !important;
                 padding-left: 15px !important;
             }
+
             .mr_left_minus_40 {
                 margin-left: 0 !important;
             }
@@ -197,59 +445,62 @@
             <header class="header-area header-style-5 htype_one">
                 <div class="top_bar">
                     <div class="container">
-                        <div class="row align-items-center flex-lg-nowrap" style="gap: 38px">
-                            <div class="flex-lg-fill col-md-6 col-sm-6 col-xs-12">
+                        <div class="row align-items-center mobile-stack" style="gap: 20px">
+                            <div class="flex-lg-fill col-lg-3 col-md-12 col-sm-12 col-xs-12 text-center-mobile">
                                 <div class="logo_box">
                                     <a href="#" class="logo navbar-brand">
                                         <img style="height: 55px;" src="{{ asset('assets/images/logo/headLogo.png') }}"
-                                            alt="">
+                                            alt="شعار جمعية تضاف">
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-auto col-md-6 col-sm-6 col-xs-12">
-                                <div class="d-flex align-items-center contact_header_one">
-                                    <div class="content">
-                                        <h6 class="tite">العنوان</h6>
-                                        <div class="title_no_a_20">دوار اكركين، جماعة سيدي وعزيز</div>
-                                    </div>
-                                    <div class="icon_s">
-                                        <i class="flaticon-pin"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-auto col-md-6 col-sm-6 col-xs-12">
-                                <div class="d-flex align-items-center contact_header_one">
-                                    <div class="content">
-                                        <h6 class="tite">فيسبوك</h6>
-                                        <div class="title_no_a_20">
-                                            <a style=" font-size: 20px;  line-height: 28px;font-weight: 700; color: var(--heading-color-one);"
-                                                href="https://www.facebook.com/profile.php?id=100083167518896"
-                                                target="_blank">تضاف</a>
+                            <div class="col-lg-9 col-md-12 col-sm-12 contact-info-wrapper">
+                                <div class="row contact-row">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="d-flex align-items-center contact_header_one">
+                                            <div class="icon_s mobile-order-2">
+                                                <i class="flaticon-pin"></i>
+                                            </div>
+                                            <div class="content mobile-order-1">
+                                                <h6 class="tite">العنوان</h6>
+                                                <div class="title_no_a_20">دوار اكركين، جماعة سيدي وعزيز</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <a target="_blank" href="https://www.facebook.com/profile.php?id=100083167518896">
-                                        <div class="icon_s">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
-                                                viewBox="0 0 320 512" fill="currentColor">
-                                                <path
-                                                    d="M279.14 288l14.22-92.66h-88.91V127.89c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.09 44.38-121.09 124.72v70.62H22.89V288h81.38v224h100.2V288z" />
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-auto col-md-6 col-sm-6 col-xs-12">
-                                <div class="d-flex align-items-center contact_header_one">
-
-                                    <div class="content">
-                                        <h6 class="tite">العنوان الالكتروني</h6>
-                                        <div class="title_no_a_20">
-                                            <span dir="ltr" href="https://www.instagram.com/tiddaf_association/"
-                                                target="_blank">Ass.tidaf07@gmail.com</span>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="d-flex align-items-center contact_header_one">
+                                            <div class="icon_s mobile-order-2">
+                                                <a target="_blank"
+                                                    href="https://www.facebook.com/profile.php?id=100083167518896">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                                        viewBox="0 0 320 512" fill="currentColor">
+                                                        <path
+                                                            d="M279.14 288l14.22-92.66h-88.91V127.89c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.09 44.38-121.09 124.72v70.62H22.89V288h81.38v224h100.2V288z" />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                            <div class="content mobile-order-1">
+                                                <h6 class="tite">فيسبوك</h6>
+                                                <div class="title_no_a_20">
+                                                    <a style="font-size: 20px; line-height: 28px; font-weight: 700; color: var(--heading-color-one);"
+                                                        href="https://www.facebook.com/profile.php?id=100083167518896"
+                                                        target="_blank">تضاف</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="icon_s">
-                                        <i class="flaticon-black-back-closed-envelope-shape"></i>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="d-flex align-items-center contact_header_one">
+                                            <div class="icon_s mobile-order-2">
+                                                <i class="flaticon-black-back-closed-envelope-shape"></i>
+                                            </div>
+                                            <div class="content mobile-order-1">
+                                                <h6 class="tite">العنوان الالكتروني</h6>
+                                                <div class="title_no_a_20">
+                                                    <span dir="ltr">Ass.tidaf07@gmail.com</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -261,6 +512,10 @@
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-9 col-md-0 col-sm-0 col-xs-0 column_menu">
+                                    <div class="mobile-menu-close">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
                                     <div class="navbar_content d-flex align-items-center">
                                         <ul class="navbar_nav">
                                             <li class="menu-item nav-item">
@@ -287,7 +542,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 nav_tog_column">
-                                    <div class="d-flex right_content align-items-center">
+                                    <div class="d-flex right_content align-items-center justify-content-end">
                                         <!--menu icon-->
                                         <div class="navbar_togglers hamburger_menu">
                                             <span class="line"></span>
@@ -417,7 +672,8 @@
                                             <div class="slider_content">
                                                 <h1 class="animate_left">الثقافة</h1>
                                                 <h6 class="animate_up">
-                                                    جمعية تضاف للتنمية تسهم في نشر الثقافة وترسيخ قيم التربية، وتنظيم برامج للتكوين وبناء القدرات بما يخدم تطور الفرد والمجتمع
+                                                    جمعية تضاف للتنمية تسهم في نشر الثقافة وترسيخ قيم التربية، وتنظيم
+                                                    برامج للتكوين وبناء القدرات بما يخدم تطور الفرد والمجتمع
                                                 </h6>
                                             </div>
                                         </div>
@@ -435,7 +691,9 @@
                                             <div class="slider_content">
                                                 <h1 class="animate_left">الرياضة</h1>
                                                 <h6 class="animate_up">
-                                                    جمعية تضاف للتنمية تدعم الرياضة كوسيلة لبناء الصحة الجسدية وروح الفريق، من خلال أنشطة ومسابقات تعزز التنافس الإيجابي بين مختلف الفئات
+                                                    جمعية تضاف للتنمية تدعم الرياضة كوسيلة لبناء الصحة الجسدية وروح
+                                                    الفريق، من خلال أنشطة ومسابقات تعزز التنافس الإيجابي بين مختلف
+                                                    الفئات
                                                 </h6>
                                             </div>
                                         </div>
@@ -469,7 +727,7 @@
                     <!---============spacing==========--->
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="col-lg-6 col-md-12 pd_right_60">
+                            <div class="col-lg-6 col-md-12 pd_right_60 responsive-content">
                                 <div class="section_title">
                                     <h4 class="sm_title">جمعية تضاف</h4>
                                     <div class="title_whole">
@@ -760,14 +1018,14 @@
                     <!---============spacing==========--->
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="col-lg-6 col-md-12 pd_right_60">
+                            <div class="col-lg-6 col-md-12 pd_right_60 responsive-content">
                                 <div class="image_box_only type_six color_one">
                                     <div class="image one">
                                         <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
                                             alt="img" class="img-fluid" />
                                         <div class="content text-center">
                                             <!-- <a href="#"> -->
-                                                <div>
+                                            <div>
                                                 <svg width="55" height="55" viewBox="0 0 55 55" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="28" cy="27" r="20" fill="white">
@@ -788,7 +1046,7 @@
                                                         fill="white"></path>
                                                 </svg>
 
-                                                </div>
+                                            </div>
                                             <!-- </a> -->
                                         </div>
                                     </div>
@@ -807,10 +1065,11 @@
                                 <div class="testimonial_carousel_wrapper position-relative">
                                     <div class="testimonial_slider color_one">
                                         <div class="testimonial_box type_two type_three color_one active">
-                                            <div class="auth d-flex justify-content-between align-items-center clearfix">
+                                            <div
+                                                class="auth d-flex justify-content-between align-items-center clearfix">
                                                 <div class="image_box">
-                                                    <img src="assets/images/testimonial/qoranLogo.jpg"
-                                                        class="img-fluid" alt="مسابقة حفظ وتجويد القرآن الكريم" />
+                                                    <img src="assets/images/testimonial/qoranLogo.jpg" class="img-fluid"
+                                                        alt="مسابقة حفظ وتجويد القرآن الكريم" />
                                                 </div>
                                                 <div class="cont">
                                                     <h4 class="title_no_a_24">مسابقة حفظ وتجويد القرآن الكريم</h4>
@@ -819,15 +1078,18 @@
                                             </div>
                                             <div class="title_no_a_22 t_comment">
                                                 <sup>"</sup>
-                                                جمعية تضاف للتنمية تنظم مسابقة "أهل القرآن" لحفظ وتجويد كتاب الله، تشجيعًا على حفظ كتاب الله وإتقان تلاوته والعمل بأحكامه، يشارك في المسابقة أزيد من 50 مشاركا كل سنة.
+                                                جمعية تضاف للتنمية تنظم مسابقة "أهل القرآن" لحفظ وتجويد كتاب الله،
+                                                تشجيعًا على حفظ كتاب الله وإتقان تلاوته والعمل بأحكامه، يشارك في
+                                                المسابقة أزيد من 50 مشاركا كل سنة.
                                                 <sub>"</sub>
                                             </div>
                                         </div>
                                         <div class="testimonial_box type_two type_three color_one">
-                                            <div class="auth d-flex justify-content-between align-items-center clearfix">
+                                            <div
+                                                class="auth d-flex justify-content-between align-items-center clearfix">
                                                 <div class="image_box">
-                                                    <img src="assets/images/testimonial/tahadi.png"
-                                                        class="img-fluid" alt="تحدي القراءة" />
+                                                    <img src="assets/images/testimonial/tahadi.png" class="img-fluid"
+                                                        alt="تحدي القراءة" />
                                                 </div>
                                                 <div class="cont">
                                                     <h4 class="title_no_a_24">تحدي القراءة</h4>
@@ -836,7 +1098,9 @@
                                             </div>
                                             <div class="title_no_a_22 t_comment">
                                                 <sup>"</sup>
-                                               جمعية تضاف للتنمية تطلق "تحدي تضاف للقراءة" لتعزيز حب المطالعة وتنمية الفكر، من خلال منافسات تثري المعرفة وتفتح آفاق الإبداع، شارك في التحدي أزيد من ثلاثين مشاركا.
+                                                جمعية تضاف للتنمية تطلق "تحدي تضاف للقراءة" لتعزيز حب المطالعة وتنمية
+                                                الفكر، من خلال منافسات تثري المعرفة وتفتح آفاق الإبداع، شارك في التحدي
+                                                أزيد من ثلاثين مشاركا.
                                                 <sub>"</sub>
                                             </div>
                                         </div>
@@ -939,14 +1203,16 @@
                                                 ">إرسال عبر واتساب</button>
                                             </div>
                                             @if(session('success'))
-                                            <div class="alert alert-success mt-3" style="color: white; background-color: #28a745; padding: 10px; border-radius: 5px; margin-top: 15px;">
-                                                {{ session('success') }}
-                                            </div>
+                                                <div class="alert alert-success mt-3"
+                                                    style="color: white; background-color: #28a745; padding: 10px; border-radius: 5px; margin-top: 15px;">
+                                                    {{ session('success') }}
+                                                </div>
                                             @endif
                                             @if(session('error'))
-                                            <div class="alert alert-danger mt-3" style="color: white; background-color: #dc3545; padding: 10px; border-radius: 5px; margin-top: 15px;">
-                                                {{ session('error') }}
-                                            </div>
+                                                <div class="alert alert-danger mt-3"
+                                                    style="color: white; background-color: #dc3545; padding: 10px; border-radius: 5px; margin-top: 15px;">
+                                                    {{ session('error') }}
+                                                </div>
                                             @endif
                                         </form>
                                     </div>
@@ -985,23 +1251,29 @@
                         <div class="pd_bottom_40"></div>
                         <!---============spacing==========--->
                         <div class="blog_post position-relative">
-                            <div class="row justify-content-center">
+                            <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="blog_box type_one trans hover_1_get">
+                                    <div class="blog_box type_one trans hover_1_get borenable">
                                         <div class="blog_inner trans">
                                             <div class="vertical_text_1">
-                                                <span class="date_tm d-flex align-items-center justify-content-center">
-                                                    <i class="fi-rr-calendar" style="margin-left: 8px;"></i>
+                                                <span class="date_tm d-flex gap-4">
+                                                    <i class="fi-rr-calendar"></i>
                                                     <time class="date published" datetime="2024-01-15T10:06:24+00:00">
-                                                        27 يوليوز 2025
+                                                        27
+                                                        يوليوز
+                                                        2025
                                                     </time>
                                                 </span>
                                             </div>
                                             <div class="image_box trans hover_1">
                                                 <a href="#">
-                                                    <img src="assets/images/blog/kitab.jpg" alt="تحدي تضاف للقراءة"
+                                                    <img src="assets/images/blog/kitab.jpg" alt="image"
                                                         class="img-fluid">
                                                 </a>
+                                                <div class="oh ho_1"></div>
+                                                <div class="oh ho_2"></div>
+                                                <div class="oh ho_3"></div>
+                                                <div class="oh ho_4"></div>
                                             </div>
                                             <div class="content">
                                                 <h4 class="title_22">
@@ -1021,21 +1293,23 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="blog_box type_one trans hover_1_get">
+                                    <div class="blog_box type_one trans hover_1_get borenable">
                                         <div class="blog_inner trans">
                                             <div class="vertical_text_1">
-                                                <span class="date_tm d-flex align-items-center justify-content-center">
-                                                    <i class="fi-rr-calendar" style="margin-left: 8px;"></i>
-                                                    <time class="date published" datetime="2024-01-10T10:06:24+00:00">
+                                                <span class="date_tm d-flex gap-4"><i class="fi-rr-calendar"></i> <time
+                                                        class="date published" datetime="2024-01-10T10:06:24+00:00">
                                                         22 مارس 2025
-                                                    </time>
-                                                </span>
+                                                    </time></span>
                                             </div>
                                             <div class="image_box trans hover_1">
                                                 <a href="#">
-                                                    <img src="assets/images/blog/ahlelquran.jpg" alt="أهل القرآن"
+                                                    <img src="assets/images/blog/ahlelquran.jpg" alt="image"
                                                         class="img-fluid">
                                                 </a>
+                                                <div class="oh ho_1"></div>
+                                                <div class="oh ho_2"></div>
+                                                <div class="oh ho_3"></div>
+                                                <div class="oh ho_4"></div>
                                             </div>
                                             <div class="content">
                                                 <h4 class="title_22">
@@ -1068,21 +1342,22 @@
                                 </div>
 
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="blog_box type_one trans hover_1_get">
+                                    <div class="blog_box type_one trans hover_1_get borenable">
                                         <div class="blog_inner trans">
                                             <div class="vertical_text_1">
-                                                <span class="date_tm d-flex align-items-center justify-content-center">
-                                                    <i class="fi-rr-calendar" style="margin-left: 8px;"></i>
-                                                    <time class="date published" datetime="2024-01-05T10:06:24+00:00">
-                                                        30 يناير 2023
-                                                    </time>
-                                                </span>
+                                                <span class="date_tm d-flex gap-4"><i class="fi-rr-calendar"></i> <time
+                                                        class="date published" datetime="2024-01-05T10:06:24+00:00">30
+                                                        يناير 2023</time></span>
                                             </div>
                                             <div class="image_box trans hover_1">
                                                 <a href="#">
-                                                    <img src="assets/images/blog/sport.jpg" alt="صبحية رياضية"
+                                                    <img src="assets/images/blog/sport.jpg" alt="image"
                                                         class="img-fluid">
                                                 </a>
+                                                <div class="oh ho_1"></div>
+                                                <div class="oh ho_2"></div>
+                                                <div class="oh ho_3"></div>
+                                                <div class="oh ho_4"></div>
                                             </div>
                                             <div class="content">
                                                 <h4 class="title_22">
@@ -1110,11 +1385,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center mt-4 mb-4">
-                                <a href="#" class="theme_btn">
-                                    المزيد من الأخبار <span><i class="fi-rr-arrow-small-right"></i></span>
-                                </a>
-                            </div>
+
+
                         </div>
                     </div>
                     <!---============spacing==========--->
@@ -1292,7 +1564,7 @@
             /* Blog cards styling */
             .blog_box {
                 height: 100%;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
                 border-radius: 8px;
                 overflow: hidden;
@@ -1301,7 +1573,7 @@
 
             .blog_box:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             }
 
             .blog_inner {
@@ -1376,19 +1648,19 @@
                 .blog_post .row {
                     margin: 0 -10px;
                 }
-                
+
                 .blog_post .col-sm-6 {
                     padding: 0 10px;
                 }
-                
+
                 .blog_box {
                     margin-bottom: 20px;
                 }
-                
+
                 .blog_box .content {
                     padding: 15px;
                 }
-                
+
                 .blog_box .title_22 {
                     font-size: 18px;
                 }
@@ -1488,39 +1760,15 @@
                 const description = wrapper.querySelector('.description-text');
                 const isExpanded = description.classList.contains('expanded');
 
-                // Fermer tous les autres descriptions expansées
-                document.querySelectorAll('.description-text.expanded').forEach(function(expandedDesc) {
-                    if (expandedDesc !== description) {
-                        expandedDesc.classList.remove('expanded');
-                        const btn = expandedDesc.closest('.description-wrapper').querySelector('.read-more-btn');
-                        btn.innerHTML = 'اقرأ المزيد<i class="fi-rr-arrow-small-right"></i>';
-                        btn.classList.remove('expanded');
-                    }
-                });
-
-                // Toggle l'état actuel
                 if (isExpanded) {
                     description.classList.remove('expanded');
                     button.innerHTML = 'اقرأ المزيد<i class="fi-rr-arrow-small-right"></i>';
                     button.classList.remove('expanded');
-                    
-                    // Scroll vers le haut de la carte
-                    const blogBox = button.closest('.blog_box');
-                    blogBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
                     description.classList.add('expanded');
                     button.innerHTML = 'اقرأ أقل<i class="fi-rr-arrow-small-right"></i>';
                     button.classList.add('expanded');
                 }
-
-                // Effet de transition pour une meilleure UX
-                const blogBox = button.closest('.blog_box');
-                blogBox.style.transition = 'box-shadow 0.3s ease';
-                blogBox.style.boxShadow = '0 10px 30px rgba(19, 64, 221, 0.1)';
-                
-                setTimeout(function() {
-                    blogBox.style.boxShadow = '';
-                }, 500);
             }
         </script>
 
@@ -1600,98 +1848,121 @@
         </script>
 
         <script>
-            // Mobile menu functionality
-            document.addEventListener('DOMContentLoaded', function() {
+            // Modern mobile menu functionality
+            document.addEventListener('DOMContentLoaded', function () {
                 const hamburgerMenus = document.querySelectorAll('.navbar_togglers.hamburger_menu');
                 const menuColumns = document.querySelectorAll('.column_menu');
-                
-                hamburgerMenus.forEach(menu => {
-                    menu.addEventListener('click', function() {
-                        // Toggle active class on hamburger
-                        this.classList.toggle('active');
-                        
-                        // Toggle visibility of menu columns
-                        menuColumns.forEach(column => {
-                            if (window.innerWidth <= 991) {
-                                if (column.style.display === 'block') {
-                                    column.style.display = 'none';
-                                } else {
-                                    column.style.display = 'block';
-                                }
-                            }
-                        });
+                const navLinks = document.querySelectorAll('.navbar_nav .nav_link');
+                const closeButtons = document.querySelectorAll('.mobile-menu-close');
+                const body = document.querySelector('body');
+
+                // Function to open menu
+                function openMobileMenu() {
+                    hamburgerMenus.forEach(menu => {
+                        menu.classList.add('active');
                     });
-                });
 
-                // Adjust menu visibility on window resize
-                window.addEventListener('resize', function() {
-                    if (window.innerWidth > 991) {
-                        menuColumns.forEach(column => {
-                            column.style.display = '';
-                        });
-                        hamburgerMenus.forEach(menu => {
-                            menu.classList.remove('active');
-                        });
-                    } else {
-                        menuColumns.forEach(column => {
-                            column.style.display = 'none';
-                        });
-                    }
-                });
-
-                // Initialize menu state on page load
-                if (window.innerWidth <= 991) {
                     menuColumns.forEach(column => {
-                        column.style.display = 'none';
+                        column.classList.add('mobile-menu-visible');
+                        column.style.display = 'block';
                     });
+
+                    body.style.overflow = 'hidden'; // Lock scrolling
                 }
-                
-                // Handle mobile menu item clicks (close menu when item is clicked)
-                const menuItems = document.querySelectorAll('.navbar_nav .menu-item a');
-                menuItems.forEach(item => {
-                    item.addEventListener('click', function() {
-                        if (window.innerWidth <= 991) {
-                            menuColumns.forEach(column => {
+
+                // Function to close menu
+                function closeMobileMenu() {
+                    hamburgerMenus.forEach(menu => {
+                        menu.classList.remove('active');
+                    });
+
+                    menuColumns.forEach(column => {
+                        column.classList.remove('mobile-menu-visible');
+
+                        // Add a small delay to allow for animation
+                        setTimeout(() => {
+                            if (!column.classList.contains('mobile-menu-visible')) {
                                 column.style.display = 'none';
-                            });
-                            hamburgerMenus.forEach(menu => {
-                                menu.classList.remove('active');
-                            });
+                            }
+                        }, 300);
+                    });
+
+                    body.style.overflow = ''; // Unlock scrolling
+                }
+
+                // Toggle mobile menu when hamburger is clicked
+                hamburgerMenus.forEach(menu => {
+                    menu.addEventListener('click', function (e) {
+                        e.stopPropagation(); // Prevent propagation to document
+
+                        if (this.classList.contains('active')) {
+                            closeMobileMenu();
+                        } else {
+                            openMobileMenu();
                         }
                     });
                 });
 
-                // Animation pour les cartes de blog
-                const animateBlogCards = function() {
-                    const blogCards = document.querySelectorAll('.blog_box');
-                    blogCards.forEach((card, index) => {
-                        setTimeout(() => {
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(20px)';
-                            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                            
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            }, 100);
-                        }, index * 150);
+                // Close mobile menu when close button is clicked
+                closeButtons.forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation(); // Prevent propagation to document
+                        closeMobileMenu();
                     });
-                };
+                });
 
-                // Exécuter l'animation lorsque la section devient visible
-                const blogSection = document.getElementById('blog');
-                if (blogSection) {
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                animateBlogCards();
-                                observer.unobserve(entry.target);
-                            }
+                // Close menu when nav link is clicked
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function () {
+                        closeMobileMenu();
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (!e.target.closest('.column_menu') && !e.target.closest('.hamburger_menu')) {
+                        closeMobileMenu();
+                    }
+                });
+
+                // Adjust menu visibility on window resize
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth > 991) {
+                        menuColumns.forEach(column => {
+                            column.style.display = '';
+                            column.classList.remove('mobile-menu-visible');
                         });
-                    }, { threshold: 0.1 });
-                    
-                    observer.observe(blogSection);
-                }
+                        hamburgerMenus.forEach(menu => {
+                            menu.classList.remove('active');
+                        });
+                        body.style.overflow = ''; // Unlock scrolling
+                    }
+                });
+            });
+                });
+
+            // Initialize menu state on page load
+            if (window.innerWidth <= 991) {
+                menuColumns.forEach(column => {
+                    column.style.display = 'none';
+                    column.classList.remove('mobile-menu-visible');
+                });
+            }
+
+            // Handle mobile menu item clicks (close menu when item is clicked)
+            const menuItems = document.querySelectorAll('.navbar_nav .menu-item a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    if (window.innerWidth <= 991) {
+                        menuColumns.forEach(column => {
+                            column.style.display = 'none';
+                        });
+                        hamburgerMenus.forEach(menu => {
+                            menu.classList.remove('active');
+                        });
+                    }
+                });
+            });
             });
         </script>
         <script type="text/javascript" src="assets/js/plugins/jquery.min.js"></script>
@@ -1717,17 +1988,17 @@
         <script type="text/javascript" src="assets/js/main.js"></script>
         <script type="text/javascript" src="assets/js/simple-carousel.js"></script>
         <script>
-        document.getElementById('whatsappSend').addEventListener('click', function() {
-            var nom = document.querySelector('input[name="nom"]').value;
-            var email = document.querySelector('input[name="email"]').value;
-            var tel = document.querySelector('input[name="tel"]').value;
-            var subject = document.querySelector('select[name="subject"]').options[document.querySelector('select[name="subject"]').selectedIndex].text;
-            var message = document.querySelector('input[name="message"]').value;
-            var whatsappNumber = '+212681783861'; // Remplace par le numéro WhatsApp de l'association
-            var text = `الاسم الكامل: ${nom}%0Aالبريد الإلكتروني: ${email}%0Aالهاتف: ${tel}%0Aنوع المساهمة: ${subject}%0Aالرسالة: ${message}`;
-            var url = `https://wa.me/${whatsappNumber}?text=${text}`;
-            window.open(url, '_blank');
-        });
+            document.getElementById('whatsappSend').addEventListener('click', function () {
+                var nom = document.querySelector('input[name="nom"]').value;
+                var email = document.querySelector('input[name="email"]').value;
+                var tel = document.querySelector('input[name="tel"]').value;
+                var subject = document.querySelector('select[name="subject"]').options[document.querySelector('select[name="subject"]').selectedIndex].text;
+                var message = document.querySelector('input[name="message"]').value;
+                var whatsappNumber = '+212681783861'; // Remplace par le numéro WhatsApp de l'association
+                var text = `الاسم الكامل: ${nom}%0Aالبريد الإلكتروني: ${email}%0Aالهاتف: ${tel}%0Aنوع المساهمة: ${subject}%0Aالرسالة: ${message}`;
+                var url = `https://wa.me/${whatsappNumber}?text=${text}`;
+                window.open(url, '_blank');
+            });
         </script>
         <!----=================Script================---->
 </body>
