@@ -69,6 +69,11 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                gap: 0;
+            }
+            
+            .navbar_togglers.hamburger_menu .line {
+                margin: 3px auto;
             }
         }
 
@@ -80,6 +85,9 @@
             border-radius: 3px;
             transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
             display: block;
+            position: relative;
+            left: 0;
+            right: 0;
         }
 
         /* Mobile menu open animation */
@@ -127,28 +135,52 @@
         .mobile-menu-close {
             display: none;
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 30px;
+            right: 30px;
             width: 40px;
             height: 40px;
             cursor: pointer;
             z-index: 1100;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            transform: scale(0);
+            opacity: 0;
+        }
+        
+        .mobile-menu-visible .mobile-menu-close {
+            transform: scale(1);
+            opacity: 1;
+            transition-delay: 0.3s;
         }
 
         @media (max-width: 991px) {
             .mobile-menu-close {
-                display: block;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
+        }
+        
+        .mobile-menu-close:hover {
+            background-color: #1340dd;
+            transform: rotate(90deg) scale(1.1);
+        }
+        
+        .mobile-menu-close:hover span {
+            background-color: white;
         }
 
         .mobile-menu-close span {
             position: absolute;
             top: 50%;
-            left: 0;
-            width: 100%;
-            height: 3px;
+            left: 25%;
+            width: 50%;
+            height: 2px;
             background-color: #1340dd;
             transform-origin: center;
+            transition: all 0.3s ease;
         }
 
         .mobile-menu-close span:first-child {
@@ -157,9 +189,7 @@
 
         .mobile-menu-close span:last-child {
             transform: rotate(-45deg);
-        }
-
-        /* Nav item hover effect */
+        }        /* Nav item hover effect */
         .navbar_nav .nav-item {
             position: relative;
             padding: 0 5px;
@@ -267,41 +297,94 @@
                 height: 100vh;
                 background-color: rgba(255, 255, 255, 0.98);
                 z-index: 999;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                padding: 80px 15px 15px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+                padding: 80px 20px 20px;
                 display: none;
                 overflow-y: auto;
-                transition: all 0.3s ease;
+                transition: all 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+                transform: translateY(-100%);
+                opacity: 0;
+                border-bottom-left-radius: 25px;
+                border-bottom-right-radius: 25px;
+            }
+            
+            .column_menu.mobile-menu-visible {
+                transform: translateY(0);
+                opacity: 1;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             }
 
             .column_menu .navbar_nav {
                 flex-direction: column;
                 align-items: center;
                 padding: 0;
-                margin-top: 20px;
+                margin-top: 30px;
             }
-
+            
             .column_menu .navbar_nav li {
-                margin: 12px 0;
+                margin: 15px 0;
                 width: 100%;
                 text-align: center;
+                transform: translateY(30px);
+                opacity: 0;
+                transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+                transition-delay: 0.1s;
             }
-
+            
+            .column_menu.mobile-menu-visible .navbar_nav li {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .column_menu.mobile-menu-visible .navbar_nav li:nth-child(1) {
+                transition-delay: 0.2s;
+            }
+            
+            .column_menu.mobile-menu-visible .navbar_nav li:nth-child(2) {
+                transition-delay: 0.3s;
+            }
+            
+            .column_menu.mobile-menu-visible .navbar_nav li:nth-child(3) {
+                transition-delay: 0.4s;
+            }
+            
+            .column_menu.mobile-menu-visible .navbar_nav li:nth-child(4) {
+                transition-delay: 0.5s;
+            }
+            
             .nav_link {
                 display: block;
                 padding: 15px;
-                font-size: 20px;
+                font-size: 24px;
                 font-weight: 600;
-                transition: all 0.3s ease;
+                transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                color: #333;
+                position: relative;
+                overflow: hidden;
+                letter-spacing: 0.5px;
             }
-
+            
+            .nav_link:before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background-color: #1340dd;
+                transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                transform: translateX(-50%);
+            }
+            
             .nav_link:hover {
-                background-color: rgba(19, 64, 221, 0.1);
-                border-radius: 5px;
-                transform: translateY(-3px);
+                color: #1340dd;
+                transform: translateY(-5px) scale(1.05);
+                text-shadow: 0 10px 20px rgba(19, 64, 221, 0.1);
             }
-
-            /* Contact button adjustments */
+            
+            .nav_link:hover:before {
+                width: 60%;
+            }            /* Contact button adjustments */
             .theme_btn_all {
                 margin-right: 15px;
             }
@@ -445,7 +528,7 @@
             <header class="header-area header-style-5 htype_one">
                 <div class="top_bar">
                     <div class="container">
-                        <div class="row align-items-center mobile-stack" style="gap: 20px">
+                        <div class="row align-items-center mobile-stack" >
                             <div class="flex-lg-fill col-lg-3 col-md-12 col-sm-12 col-xs-12 text-center-mobile">
                                 <div class="logo_box">
                                     <a href="#" class="logo navbar-brand">
@@ -456,20 +539,29 @@
                             </div>
                             <div class="col-lg-9 col-md-12 col-sm-12 contact-info-wrapper">
                                 <div class="row contact-row">
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
                                         <div class="d-flex align-items-center contact_header_one">
-                                            <div class="icon_s mobile-order-2">
-                                                <i class="flaticon-pin"></i>
-                                            </div>
                                             <div class="content mobile-order-1">
                                                 <h6 class="tite">العنوان</h6>
                                                 <div class="title_no_a_20">دوار اكركين، جماعة سيدي وعزيز</div>
                                             </div>
+                                            <div class="icon_s mobile-order-2">
+                                                <i class="flaticon-pin"></i>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                         <div class="d-flex align-items-center contact_header_one">
-                                            <div class="icon_s mobile-order-2">
+                                   
+                                            <div class="content mobile-order-1">
+                                                <h6 class="tite">فيسبوك</h6>
+                                                <div class="title_no_a_20">
+                                                    <a style="font-size: 20px; line-height: 28px; font-weight: 700; color: var(--heading-color-one);"
+                                                        href="https://www.facebook.com/profile.php?id=100083167518896"
+                                                        target="_blank">تضاف</a>
+                                                </div>
+                                            </div>
+                                                     <div class="icon_s mobile-order-2">
                                                 <a target="_blank"
                                                     href="https://www.facebook.com/profile.php?id=100083167518896">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -479,26 +571,19 @@
                                                     </svg>
                                                 </a>
                                             </div>
-                                            <div class="content mobile-order-1">
-                                                <h6 class="tite">فيسبوك</h6>
-                                                <div class="title_no_a_20">
-                                                    <a style="font-size: 20px; line-height: 28px; font-weight: 700; color: var(--heading-color-one);"
-                                                        href="https://www.facebook.com/profile.php?id=100083167518896"
-                                                        target="_blank">تضاف</a>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         <div class="d-flex align-items-center contact_header_one">
-                                            <div class="icon_s mobile-order-2">
-                                                <i class="flaticon-black-back-closed-envelope-shape"></i>
-                                            </div>
+                                      
                                             <div class="content mobile-order-1">
                                                 <h6 class="tite">العنوان الالكتروني</h6>
                                                 <div class="title_no_a_20">
                                                     <span dir="ltr">Ass.tidaf07@gmail.com</span>
                                                 </div>
+                                            </div>
+                                                  <div class="icon_s mobile-order-2">
+                                                <i class="flaticon-black-back-closed-envelope-shape"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -544,11 +629,11 @@
                                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 nav_tog_column">
                                     <div class="d-flex right_content align-items-center justify-content-end">
                                         <!--menu icon-->
-                                        <div class="navbar_togglers hamburger_menu">
-                                            <span class="line"></span>
-                                            <span class="line"></span>
-                                            <span class="line"></span>
-                                        </div>
+                                        <!-- <div class="navbar_togglers hamburger_menu">
+                                            <div class="line"></div>
+                                            <div class="line"></div>
+                                            <div class="line"></div>
+                                        </div> -->
                                         <!--menu icon-->
                                         <div class="theme_btn_all">
                                             <a href="#contact" style="padding-left: 1px !important;" class="theme_btn">
@@ -612,11 +697,11 @@
                             <div class="col-xl-3 col-lg-3 col-md-7 col-sm-7 col-xs-7 nav_tog_column">
                                 <div class="d-flex right_content align-items-center">
                                     <!--menu icon-->
-                                    <div class="navbar_togglers hamburger_menu">
-                                        <span class="line"></span>
-                                        <span class="line"></span>
-                                        <span class="line"></span>
-                                    </div>
+                                    <!-- <div class="navbar_togglers hamburger_menu">
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                        <div class="line"></div>
+                                    </div> -->
                                     <!--menu icon-->
                                     <div class="button">
                                         <a href="#contact" style="padding-left: 1px !important;" class="theme_btn">
@@ -1855,23 +1940,40 @@
                 const navLinks = document.querySelectorAll('.navbar_nav .nav_link');
                 const closeButtons = document.querySelectorAll('.mobile-menu-close');
                 const body = document.querySelector('body');
+                let isAnimating = false;
 
-                // Function to open menu
+                // Function to open menu with improved animation
                 function openMobileMenu() {
+                    if (isAnimating) return;
+                    isAnimating = true;
+
                     hamburgerMenus.forEach(menu => {
                         menu.classList.add('active');
                     });
 
                     menuColumns.forEach(column => {
-                        column.classList.add('mobile-menu-visible');
+                        // Show first to enable animation
                         column.style.display = 'block';
+                        
+                        // Wait a tiny bit for display:block to take effect
+                        setTimeout(() => {
+                            column.classList.add('mobile-menu-visible');
+                            
+                            // Reset animation flag after animation completes
+                            setTimeout(() => {
+                                isAnimating = false;
+                            }, 600); // Match transition duration
+                        }, 10);
                     });
 
                     body.style.overflow = 'hidden'; // Lock scrolling
                 }
 
-                // Function to close menu
+                // Function to close menu with improved animation
                 function closeMobileMenu() {
+                    if (isAnimating) return;
+                    isAnimating = true;
+
                     hamburgerMenus.forEach(menu => {
                         menu.classList.remove('active');
                     });
@@ -1879,12 +1981,13 @@
                     menuColumns.forEach(column => {
                         column.classList.remove('mobile-menu-visible');
 
-                        // Add a small delay to allow for animation
+                        // Add a delay to allow for animation before hiding
                         setTimeout(() => {
                             if (!column.classList.contains('mobile-menu-visible')) {
                                 column.style.display = 'none';
+                                isAnimating = false;
                             }
-                        }, 300);
+                        }, 600); // Match transition duration
                     });
 
                     body.style.overflow = ''; // Unlock scrolling
@@ -1911,10 +2014,11 @@
                     });
                 });
 
-                // Close menu when nav link is clicked
+                // Close menu when nav link is clicked with smooth timing
                 navLinks.forEach(link => {
                     link.addEventListener('click', function () {
-                        closeMobileMenu();
+                        // Add small delay to allow the user to see the hover effect
+                        setTimeout(closeMobileMenu, 150);
                     });
                 });
 

@@ -15,23 +15,23 @@ class G_pageController extends Controller
      */
     public function index()
     {
-        $apropos = Apropos::all();
-        $avis = Avis::all();
-        $services = Service::all();
-        return view('dashbord',["avis" => $avis, "apropos" => $apropos, "services" => $services]);
+        // $apropos = Apropos::all();
+        // $avis = Avis::all();
+        // $services = Service::all();
+        // return view('dashbord',["avis" => $avis, "apropos" => $apropos, "services" => $services]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    // public function create()
-    // {
+    public function create()
+    {
     //     $apropos = Apropos::all();
     //     $avis = Avis::all();
     //     $services = Service::all();
-    //     return view('admin.dashbord', ["avis" => $avis, "apropos" => $apropos, "services" => $services]);
+        // return view('admin.dashbord', ["avis" => $avis, "apropos" => $apropos, "services" => $services]);
 
-    // }
+    }
 
     /**
      * Store a newly created resource in storage.
