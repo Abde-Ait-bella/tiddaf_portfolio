@@ -1343,9 +1343,8 @@
                                                 <span class="date_tm d-flex gap-4">
                                                     <i class="fi-rr-calendar"></i>
                                                     <time class="date published" datetime="2024-01-15T10:06:24+00:00">
-                                                        27
-                                                        يوليوز
-                                                        2025
+                                                        <span class="date_normal">27 يوليوز 2025</span>
+                                                        <span class="date_published_mobile">27/07/2025</span>
                                                     </time>
                                                 </span>
                                             </div>
@@ -1382,7 +1381,8 @@
                                             <div class="vertical_text_1">
                                                 <span class="date_tm d-flex gap-4"><i class="fi-rr-calendar"></i> <time
                                                         class="date published" datetime="2024-01-10T10:06:24+00:00">
-                                                        22 مارس 2025
+                                                        <span class="date_normal">22 مارس 2025</span>
+                                                        <span class="date_published_mobile">22/03/2025</span>
                                                     </time></span>
                                             </div>
                                             <div class="image_box trans hover_1">
@@ -1430,8 +1430,10 @@
                                         <div class="blog_inner trans">
                                             <div class="vertical_text_1">
                                                 <span class="date_tm d-flex gap-4"><i class="fi-rr-calendar"></i> <time
-                                                        class="date published" datetime="2024-01-05T10:06:24+00:00">30
-                                                        يناير 2023</time></span>
+                                                        class="date published" datetime="2024-01-05T10:06:24+00:00">
+                                                        <span class="date_normal">30 يناير 2023</span>
+                                                        <span class="date_published_mobile">30/01/2023</span>
+                                                    </time></span>
                                             </div>
                                             <div class="image_box trans hover_1">
                                                 <a href="#">
@@ -1707,24 +1709,51 @@
                 color: #1340dd;
             }
 
-            .vertical_text_1 {
-                padding: 10px 20px;
-                background-color: #f9f9f9;
-                font-size: 14px;
-                color: #666;
-                border-bottom: 1px solid #eee;
-            }
+        /* Blog date styling */
+        .vertical_text_1 {
+            padding: 10px 20px;
+            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #666;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .vertical_text_1:hover {
+            background-color: #f0f5ff;
+        }
 
-            .date_tm {
-                justify-content: center;
-                color: #777;
-                font-size: 14px;
-            }
-
-            /* Responsive adjustments for blog section */
+        .date_tm {
+            justify-content: center;
+            color: #777;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+        
+        .date_tm i {
+            /* margin-left: 5px; */
+            color: #1340dd;
+        }
+        
+        .date_tm time {
+            white-space: nowrap;
+        }            /* Responsive adjustments for blog section */
             @media (max-width: 991px) {
                 .blog_box .image_box img {
                     height: 200px;
+                }
+                
+                .vertical_text_1 {
+                    padding: 8px 15px;
+                    display: flex;
+                    justify-content: center;
+                }
+                
+                .date_tm {
+                    font-size: 13px;
+                    gap: 3px !important;
                 }
             }
 
@@ -1748,11 +1777,49 @@
                 .blog_box .title_22 {
                     font-size: 18px;
                 }
+                
+                .vertical_text_1 {
+                    text-align: center;
+                    padding: 10px 10px;
+                }
+                
+                .date_tm {
+                    font-size: 12px;
+                    justify-content: center;
+                }
             }
 
+            .date_published_mobile {
+                display: none;
+            }
+            
+            .date_normal {
+                display: inline;
+            }
+            
             @media (max-width: 576px) {
                 .blog_post .col-sm-6 {
                     width: 100%;
+                }
+                
+                .date_published_mobile {
+                    display: block;
+                    font-weight: 700;
+                    margin-top: 3px;
+                    margin-bottom: 15px;
+                    color: #1340dd;
+                }
+                
+                .date_normal {
+                    display: none;
+                }
+                
+                .vertical_text_1 {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    background-color: #f7f9ff;
+                    border-bottom: 2px solid #e8ecfd;
                 }
             }
 
@@ -1931,143 +1998,6 @@
             feather.replace()
         </script>
 
-        <script>
-            // Modern mobile menu functionality
-            document.addEventListener('DOMContentLoaded', function () {
-                const hamburgerMenus = document.querySelectorAll('.navbar_togglers.hamburger_menu');
-                const menuColumns = document.querySelectorAll('.column_menu');
-                const navLinks = document.querySelectorAll('.navbar_nav .nav_link');
-                const closeButtons = document.querySelectorAll('.mobile-menu-close');
-                const body = document.querySelector('body');
-                let isAnimating = false;
-
-                // Function to open menu with improved animation
-                function openMobileMenu() {
-                    if (isAnimating) return;
-                    isAnimating = true;
-
-                    hamburgerMenus.forEach(menu => {
-                        menu.classList.add('active');
-                    });
-
-                    menuColumns.forEach(column => {
-                        // Show first to enable animation
-                        column.style.display = 'block';
-                        
-                        // Wait a tiny bit for display:block to take effect
-                        setTimeout(() => {
-                            column.classList.add('mobile-menu-visible');
-                            
-                            // Reset animation flag after animation completes
-                            setTimeout(() => {
-                                isAnimating = false;
-                            }, 600); // Match transition duration
-                        }, 10);
-                    });
-
-                    body.style.overflow = 'hidden'; // Lock scrolling
-                }
-
-                // Function to close menu with improved animation
-                function closeMobileMenu() {
-                    if (isAnimating) return;
-                    isAnimating = true;
-
-                    hamburgerMenus.forEach(menu => {
-                        menu.classList.remove('active');
-                    });
-
-                    menuColumns.forEach(column => {
-                        column.classList.remove('mobile-menu-visible');
-
-                        // Add a delay to allow for animation before hiding
-                        setTimeout(() => {
-                            if (!column.classList.contains('mobile-menu-visible')) {
-                                column.style.display = 'none';
-                                isAnimating = false;
-                            }
-                        }, 600); // Match transition duration
-                    });
-
-                    body.style.overflow = ''; // Unlock scrolling
-                }
-
-                // Toggle mobile menu when hamburger is clicked
-                hamburgerMenus.forEach(menu => {
-                    menu.addEventListener('click', function (e) {
-                        e.stopPropagation(); // Prevent propagation to document
-
-                        if (this.classList.contains('active')) {
-                            closeMobileMenu();
-                        } else {
-                            openMobileMenu();
-                        }
-                    });
-                });
-
-                // Close mobile menu when close button is clicked
-                closeButtons.forEach(button => {
-                    button.addEventListener('click', function (e) {
-                        e.stopPropagation(); // Prevent propagation to document
-                        closeMobileMenu();
-                    });
-                });
-
-                // Close menu when nav link is clicked with smooth timing
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function () {
-                        // Add small delay to allow the user to see the hover effect
-                        setTimeout(closeMobileMenu, 150);
-                    });
-                });
-
-                // Close menu when clicking outside
-                document.addEventListener('click', function (e) {
-                    if (!e.target.closest('.column_menu') && !e.target.closest('.hamburger_menu')) {
-                        closeMobileMenu();
-                    }
-                });
-
-                // Adjust menu visibility on window resize
-                window.addEventListener('resize', function () {
-                    if (window.innerWidth > 991) {
-                        menuColumns.forEach(column => {
-                            column.style.display = '';
-                            column.classList.remove('mobile-menu-visible');
-                        });
-                        hamburgerMenus.forEach(menu => {
-                            menu.classList.remove('active');
-                        });
-                        body.style.overflow = ''; // Unlock scrolling
-                    }
-                });
-            });
-                });
-
-            // Initialize menu state on page load
-            if (window.innerWidth <= 991) {
-                menuColumns.forEach(column => {
-                    column.style.display = 'none';
-                    column.classList.remove('mobile-menu-visible');
-                });
-            }
-
-            // Handle mobile menu item clicks (close menu when item is clicked)
-            const menuItems = document.querySelectorAll('.navbar_nav .menu-item a');
-            menuItems.forEach(item => {
-                item.addEventListener('click', function () {
-                    if (window.innerWidth <= 991) {
-                        menuColumns.forEach(column => {
-                            column.style.display = 'none';
-                        });
-                        hamburgerMenus.forEach(menu => {
-                            menu.classList.remove('active');
-                        });
-                    }
-                });
-            });
-            });
-        </script>
         <script type="text/javascript" src="assets/js/plugins/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/plugins/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="assets/js/plugins/appear.js"></script>
@@ -2098,7 +2028,7 @@
                 var subject = document.querySelector('select[name="subject"]').options[document.querySelector('select[name="subject"]').selectedIndex].text;
                 var message = document.querySelector('input[name="message"]').value;
                 var whatsappNumber = '+212635648611'; // Remplace par le numéro WhatsApp de l'association
-                var text = `الاسم الكامل: ${nom}%0Aالبريد الإلكتروني: ${email}%0Aالهاتف: ${tel}%0Aنوع المساهمة: ${subject}%0Aالرسالة: ${message}`;
+                var text = `رسالة من موقع جمعية تضاف%0A%0Aالاسم الكامل: ${nom}%0Aالبريد الإلكتروني: ${email}%0Aالهاتف: ${tel}%0Aنوع المساهمة: ${subject}%0Aالرسالة: ${message}`;
                 var url = `https://wa.me/${whatsappNumber}?text=${text}`;
                 window.open(url, '_blank');
             });

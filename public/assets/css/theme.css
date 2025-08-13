@@ -5014,7 +5014,7 @@ body .service_post.style_one .owl-carousel .owl-dots {
 .blog_box.type_one .vertical_text_1 {
   position: absolute;
   top: 30px;
-  left: 20px;
+  left: 0px;
 }
 .blog_box.type_one .vertical_text_1 .date_tm {
   font-size: 22px;
@@ -7543,7 +7543,7 @@ body ul.portfolio_filter.color_two li.current, body ul.portfolio_filter.color_tw
     padding-left: 35px;
   }
   .blog_box.type_one .vertical_text_1 {
-    left: 6px;
+    left: -3px;
   }
   .list_box li .d-flex {
     text-align: left;
