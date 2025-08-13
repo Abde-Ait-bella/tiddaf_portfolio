@@ -1504,11 +1504,11 @@
                             <span> <i class=" fi-rr-arrow-small-up"></i></span>
                         </a>
                     </div>
-                    <div class="d-flex align-items-center contact_header_one">
+                    <div class="d-flex align-items-center contact_header_one justify-content-center">
                         <div class="content">
                             <h6 class="tite">تابعنا على</h6>
                             <div class="title_20 d-flex gap-4 mt-4">
-                                <a href="https://www.facebook.com/profile.php?id=100083167518896" target="_blank">
+                                <a style="padding-top: 4px;" href="https://www.facebook.com/profile.php?id=100083167518896" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 320 512"
                                         fill="currentColor">
                                         <path
