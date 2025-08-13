@@ -811,7 +811,7 @@
                     <!---============spacing==========--->
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="col-lg-6 col-md-12 pd_right_60 responsive-content">
+                            <div class="col-lg-6 col-md-12 pd_right_60 responsive-content" style="padding-right: 15px !important;">
                                 <div class="section_title">
                                     <h4 class="sm_title">جمعية تضاف</h4>
                                     <div class="title_whole">
