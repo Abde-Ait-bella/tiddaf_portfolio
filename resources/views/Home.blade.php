@@ -7,8 +7,16 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="جمعية تضاف للتنمية">
+    <meta name="keywords" content="تضاف, جمعية, تنمية, ثقافة, تضامن, المغرب, جمعية مغربية, أعمال خيرية">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Arabic">
+    <meta name="revisit-after" content="7 days">
+    <meta name="generator" content="Laravel">
 
-    <title>تضاف - جمعية للتنمية والثقافة والتضامن</title>
+    <title>تضاف - جمعية للتنمية</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -20,7 +28,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>تضاف - جمعية للتنمية والثقافة والتضامن</title>
+    <title>تضاف - جمعية للتنمية</title>
+    
+    <!-- Meta Tags for Social Media Sharing -->
+    <meta name="description" content="جمعية تضاف للتنمية ، منظمة غير ربحية تهدف إلى تحسين ظروف المعيشة في المجتمعات المحلية">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="تضاف - جمعية للتنمية">
+    <meta property="og:description" content="جمعية تضاف هي منظمة غير ربحية تهدف إلى تحسين ظروف المعيشة في المجتمعات المحلية من خلال مبادرات التنمية">
+    <meta property="og:image" content="{{ asset('assets/images/logo/social-preview.jpg') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ar_MA">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url('/') }}">
+    <meta name="twitter:title" content="تضاف - جمعية للتنمية">
+    <meta name="twitter:description" content="جمعية تضاف هي منظمة غير ربحية تهدف إلى تحسين ظروف المعيشة في المجتمعات المحلية">
+    <meta name="twitter:image" content="{{ asset('assets/images/logo/social-preview.jpg') }}">
+    
     <!-- Fav Icon -->
     <link rel="icon" type="image/gif/png" href="assets/images/logo/headLogo.png">
     <!-- Fav Icon -->
