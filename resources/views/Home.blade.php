@@ -35,20 +35,20 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:url" content="{{ url('https://tiddaf.arbitre.ma/assets/images/logo/headLogo.png') }}">
     <meta property="og:title" content="تضاف - جمعية للتنمية">
     <meta property="og:description" content="جمعية تضاف هي منظمة غير ربحية تهدف إلى تحسين ظروف المعيشة في المجتمعات المحلية من خلال مبادرات التنمية">
-    <meta property="og:image" content="{{ asset('assets/images/logo/social-preview.jpg') }}">
+    <meta property="og:image" content="{{ asset('https://tiddaf.arbitre.ma/assets/images/logo/headLogo.png') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="ar_MA">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="{{ url('/') }}">
+    <meta name="twitter:url" content="{{ url('https://tiddaf.arbitre.ma/assets/images/logo/headLogo.png') }}">
     <meta name="twitter:title" content="تضاف - جمعية للتنمية">
     <meta name="twitter:description" content="جمعية تضاف هي منظمة غير ربحية تهدف إلى تحسين ظروف المعيشة في المجتمعات المحلية">
-    <meta name="twitter:image" content="{{ asset('assets/images/logo/social-preview.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('https://tiddaf.arbitre.ma/assets/images/logo/headLogo.png') }}">
     
     <!-- Fav Icon -->
     <link rel="icon" type="image/gif/png" href="assets/images/logo/headLogo.png">
