@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>تضاف - جمعية للتنمية</title>
+    <title>تضاف - جمعية للتنمية والثقافة والتضامن</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -20,7 +20,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>تضاف - جمعية للتنمية</title>
+    <title>تضاف - جمعية للتنمية والثقافة والتضامن</title>
     <!-- Fav Icon -->
     <link rel="icon" type="image/gif/png" href="assets/images/logo/headLogo.png">
     <!-- Fav Icon -->
