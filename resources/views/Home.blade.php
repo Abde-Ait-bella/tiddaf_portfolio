@@ -1193,7 +1193,7 @@
                                             <h6 class="title_no_a_18">
                                                 <small>+</small>17
                                             </h6>
-                                            <h6 class="title_no_a_26">
+                                            <h6 class="title_no_a_26 text-center">
                                                 سنة <br />
                                                 من العطاء
                                             </h6>
