@@ -24,6 +24,8 @@
     <!-- Fav Icon -->
     <link rel="icon" type="image/gif/png" href="assets/images/logo/headLogo.png">
     <!-- Fav Icon -->
+    <!-- Custom Colors -->
+    <link rel="stylesheet" href="assets/css/custom-colors.css">
     <!-- Googel Fonts -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=DM+Sans%3A400%2C400i%2C500%2C500i%2C700%2C700i&amp;subset=latin%2Clatin-ext"
@@ -1192,7 +1194,7 @@
                                                 <small>+</small>17
                                             </h6>
                                             <h6 class="title_no_a_26">
-                                                سنوات <br />
+                                                سنة <br />
                                                 من العطاء
                                             </h6>
                                         </div>
@@ -1567,7 +1569,7 @@
                                             <div class="d-flex justify-content-between">
                                                 <button type="submit" class="theme_btn">إرسال عبر البريد</button>
                                                 <button type="button" class="theme_btn" id="whatsappSend" style="
-                                                margin-right:10px;background:#25D366;color:#fff;
+                                                margin-right:10px;background:#3a670d;color:#fff;
                                                 
                                                     font-size: 17px;
     margin-top: 15px;
@@ -1579,13 +1581,13 @@
     border-radius: 7px;
     padding: 5px 15px;
     box-shadow: unset;
-    border: 1px solid var(--color-set-one-1);
+    border: 1px solid #304f6f;
     transition: 0.5s ease-in-out;
                                                 ">إرسال عبر واتساب</button>
                                             </div>
                                             @if(session('success'))
                                                 <div class="alert alert-success mt-3"
-                                                    style="color: white; background-color: #28a745; padding: 10px; border-radius: 5px; margin-top: 15px;">
+                                                    style="color: white; background-color: #3a670d; padding: 10px; border-radius: 5px; margin-top: 15px;">
                                                     {{ session('success') }}
                                                 </div>
                                             @endif
@@ -1880,7 +1882,7 @@
                             </div>
                         </div>
                         <div class="col-lg-7 text-md-end">
-                            <div class="position-relative color_white">
+                            <div class="position-relative color_white text-center pt-md-2">
                                 ٢٠٢٣ © تضاف | جميع الحقوق محفوظة</div>
                         </div>
                     </div>
@@ -1916,7 +1918,7 @@
             .read-more-btn {
                 background: none;
                 border: none;
-                color: #1340dd;
+                color: #3a670d;
                 font-weight: 500;
                 cursor: pointer;
                 padding: 5px 0;
@@ -1927,7 +1929,7 @@
             }
 
             .read-more-btn:hover {
-                color: #0d2db8;
+                color: #304f6f;
             }
 
             .read-more-btn i {
@@ -1997,7 +1999,7 @@
             }
 
             .blog_box .title_22 a:hover {
-                color: #1340dd;
+                color: #3a670d;
             }
 
         /* Blog date styling */
@@ -2025,7 +2027,7 @@
         
         .date_tm i {
             /* margin-left: 5px; */
-            color: #1340dd;
+            color: #3a670d;
         }
         
         .date_tm time {
@@ -2098,7 +2100,7 @@
                     font-weight: 700;
                     margin-top: 3px;
                     margin-bottom: 15px;
-                    color: #1340dd;
+                    color: #3a670d;
                 }
                 
                 .date_normal {
@@ -2174,7 +2176,7 @@
 
             .testimonial_dots .dot.active,
             .testimonial_dots .dot:hover {
-                background-color: #1340dd;
+                background-color: #3a670d;
                 transform: scale(1.2);
             }
 
